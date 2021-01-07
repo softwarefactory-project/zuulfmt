@@ -132,7 +132,7 @@ def fmt(content: str) -> str:
     return header + "\n" + unblocks(list(map(reorder, blocks)))
 
 
-def usage():
+def usage() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Zuul config formatter")
     parser.add_argument("--file")
     return parser.parse_args()

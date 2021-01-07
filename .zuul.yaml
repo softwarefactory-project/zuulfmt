@@ -15,7 +15,6 @@
         - wait-for-changes-ahead:
             dependencies:
               - sf-rpm-build
-              - shake-factory-test
               - tox-docs
               - tox-linters
               - tox-py36

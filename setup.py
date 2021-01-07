@@ -16,7 +16,7 @@ from setuptools import setup
 
 setup(
     name='zuulfmt',
-    version='0.1.0',
+    version='0.1.1',
     packages=['zuulfmt'],
     description = "A Zuul/Ansible yaml formatter/prettifier.",
     license = "ASL v2.0",
