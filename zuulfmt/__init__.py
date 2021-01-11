@@ -36,8 +36,9 @@ keys_order = (
     "when",
     "become",
     "loop",
-    "register"
+    "register",
 )
+
 
 def reorder_items(prefix: str, items: List[str]) -> List[str]:
     """Reorder a list of items according to keys_order
@@ -51,10 +52,7 @@ def reorder_items(prefix: str, items: List[str]) -> List[str]:
         for (pos, elem) in enumerate(items)
         if elem.startswith(prefix + key + ":")
     ]
-    rest_pos = [
-        pos for pos in range(len(items))
-        if pos not in ordered_pos
-    ]
+    rest_pos = [pos for pos in range(len(items)) if pos not in ordered_pos]
     return list(map(lambda pos: items[pos], ordered_pos + rest_pos))
 
 
@@ -65,15 +63,15 @@ def split_blocks(content: str) -> Tuple[str, List[str]]:
     >>> split_blocks(nl + '- elem: 42' + nl + '  key: 44' + nl + '- other: 43')
     ('', ['  elem: 42\\n  key: 44', '  other: 43'])
     """
+
     def remove_tick(line: str) -> str:
         return "  " + line[2:] if line.startswith("- ") else line
 
     block: List[str] = []
     result: List[str] = []
-    header = content[:content.index("\n-")]
-    lines = content[content.index("\n-") + 1:].split("\n")
-    for line in map(
-            str.rstrip, filter(lambda line: line != "", lines + ["-"])):
+    header = content[: content.index("\n-")]
+    lines = content[content.index("\n-") + 1 :].split("\n")
+    for line in map(str.rstrip, filter(lambda line: line != "", lines + ["-"])):
         if line and line[0] == "-" and block:
             result.append("\n".join(list(map(remove_tick, block))))
             block = [line]
@@ -92,10 +90,12 @@ def split_items(content: str) -> List[str]:
     result: List[str] = []
     prefix = "    " if content.startswith("    ") else "  "
     item, pos = "", 0
-    content = "\n" + content + "\n" + prefix + 'eof'
+    content = "\n" + content + "\n" + prefix + "eof"
     for pos in range(len(content)):
-        if content[pos:].startswith("\n" + prefix) and content[
-                pos + len(prefix) + 1] != ' ':
+        if (
+            content[pos:].startswith("\n" + prefix)
+            and content[pos + len(prefix) + 1] != " "
+        ):
             result.append(item[1:])
             item = content[pos]
         else:
@@ -108,8 +108,9 @@ def reorder(block: str) -> str:
     """Re-order the block lines."""
 
     zuul_objs = ("job", "pipeline", "project")
-    is_zuul = block and any(map(
-        lambda n: block.startswith("  " + n + ":\n"), zuul_objs))
+    is_zuul = block and any(
+        map(lambda n: block.startswith("  " + n + ":\n"), zuul_objs)
+    )
     if is_zuul:
         prefix = "    "
         header_, keys = block.split("\n", 1)
