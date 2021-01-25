@@ -107,7 +107,16 @@ def split_items(content: str) -> List[str]:
 def reorder(block: str) -> str:
     """Re-order the block lines."""
 
-    zuul_objs = ("job", "pipeline", "project")
+    zuul_objs = (
+        "job",
+        "nodeset",
+        "project",
+        "tenant",
+        "secret",
+        "semaphore",
+        "pipeline",
+        "project-template",
+    )
     is_zuul = block and any(
         map(lambda n: block.startswith("  " + n + ":\n"), zuul_objs)
     )
