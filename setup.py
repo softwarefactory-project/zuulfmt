@@ -15,12 +15,13 @@
 from setuptools import setup
 
 setup(
-    name='zuulfmt',
-    version='0.1.1',
-    packages=['zuulfmt'],
-    description = "A Zuul/Ansible yaml formatter/prettifier.",
-    license = "ASL v2.0",
-    long_description = open("README.md").read(),
+    name="zuulfmt",
+    version="0.1.1",
+    packages=["zuulfmt"],
+    description="A Zuul/Ansible yaml formatter/prettifier.",
+    license="ASL v2.0",
+    long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Information Technology",
@@ -28,7 +29,5 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3.6",
     ],
-    entry_points = {
-        'console_scripts': ['zuulfmt=zuulfmt:main']
-    }
+    entry_points={"console_scripts": ["zuulfmt=zuulfmt:main"]},
 )
