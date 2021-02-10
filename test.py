@@ -99,7 +99,7 @@ def fmt(inp, expected):
 
 
 def test_samples():
-    assert all([fmt(inp, expected.rstrip()) for inp, expected in samples])
+    assert all([fmt(inp, expected) for inp, expected in samples])
 
 
 if __name__ == '__main__':

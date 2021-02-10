@@ -139,7 +139,7 @@ def unblocks(blocks: List[str]) -> str:
 
 def fmt(content: str) -> str:
     header, blocks = split_blocks(content)
-    return header + "\n" + unblocks(list(map(reorder, blocks)))
+    return header + "\n" + unblocks(list(map(reorder, blocks))) + "\n"
 
 
 def usage() -> argparse.Namespace:
@@ -156,9 +156,9 @@ def main() -> None:
         content = sys.stdin.read()
     formated_content = fmt(content)
     if args.file:
-        open(args.file, "w").write(formated_content + "\n")
+        open(args.file, "w").write(formated_content)
     else:
-        print(formated_content)
+        print(formated_content, end="")
 
 
 if __name__ == "__main__":
