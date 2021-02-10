@@ -33,4 +33,8 @@
     release:
       jobs:
         - sf-rpm-publish
-        - upload-pypi
+        - upload-pypi:
+            nodeset:
+              nodes:
+                - name: container
+                  label: zuul-worker-python
